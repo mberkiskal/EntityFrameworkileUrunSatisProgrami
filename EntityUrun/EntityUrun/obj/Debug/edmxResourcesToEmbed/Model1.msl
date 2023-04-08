@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EntityUrunModelStoreContainer" CdmEntityContainer="EntityUrunEntities1">
+    <EntitySetMapping Name="Table_Kategori">
+      <EntityTypeMapping TypeName="EntityUrunModel.Table_Kategori">
+        <MappingFragment StoreEntitySet="Table_Kategori">
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="KategoriAd" ColumnName="KategoriAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Musteri">
+      <EntityTypeMapping TypeName="EntityUrunModel.Table_Musteri">
+        <MappingFragment StoreEntitySet="Table_Musteri">
+          <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+          <ScalarProperty Name="MusteriAd" ColumnName="MusteriAd" />
+          <ScalarProperty Name="MusteriSoyad" ColumnName="MusteriSoyad" />
+          <ScalarProperty Name="MusteriSehir" ColumnName="MusteriSehir" />
+          <ScalarProperty Name="MusteriDurum" ColumnName="MusteriDurum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Satis">
+      <EntityTypeMapping TypeName="EntityUrunModel.Table_Satis">
+        <MappingFragment StoreEntitySet="Table_Satis">
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+          <ScalarProperty Name="SatisUrun" ColumnName="SatisUrun" />
+          <ScalarProperty Name="SatisMusteri" ColumnName="SatisMusteri" />
+          <ScalarProperty Name="SatisFiyat" ColumnName="SatisFiyat" />
+          <ScalarProperty Name="SatisTarih" ColumnName="SatisTarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Urun">
+      <EntityTypeMapping TypeName="EntityUrunModel.Table_Urun">
+        <MappingFragment StoreEntitySet="Table_Urun">
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="UrunAd" ColumnName="UrunAd" />
+          <ScalarProperty Name="UrunMarkas" ColumnName="UrunMarkas" />
+          <ScalarProperty Name="UrunStokSayisi" ColumnName="UrunStokSayisi" />
+          <ScalarProperty Name="UrunSatisFiyati" ColumnName="UrunSatisFiyati" />
+          <ScalarProperty Name="UrunDurum" ColumnName="UrunDurum" />
+          <ScalarProperty Name="UrunKategoriId" ColumnName="UrunKategoriId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="MarkaGetir" FunctionName="EntityUrunModel.Store.MarkaGetir" />
+    <EntitySetMapping Name="Table_Admin">
+      <EntityTypeMapping TypeName="EntityUrunModel.Table_Admin">
+        <MappingFragment StoreEntitySet="Table_Admin">
+          <ScalarProperty Name="AdminSifre" ColumnName="AdminSifre" />
+          <ScalarProperty Name="AdminKullaniciAd" ColumnName="AdminKullaniciAd" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EntityUrunModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Table_Kategori">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAd" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Table_Urun" Relationship="Self.FK_Table_Urun_Table_Kategori" FromRole="Table_Kategori" ToRole="Table_Urun" />
+  </EntityType>
+  <EntityType Name="Table_Musteri">
+    <Key>
+      <PropertyRef Name="MusteriId" />
+    </Key>
+    <Property Name="MusteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MusteriAd" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="MusteriSoyad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="MusteriSehir" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="MusteriDurum" Type="Boolean" />
+    <NavigationProperty Name="Table_Satis" Relationship="Self.FK_Table_Satis_Table_Musteri" FromRole="Table_Musteri" ToRole="Table_Satis" />
+  </EntityType>
+  <EntityType Name="Table_Satis">
+    <Key>
+      <PropertyRef Name="SatisId" />
+    </Key>
+    <Property Name="SatisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SatisUrun" Type="Int32" />
+    <Property Name="SatisMusteri" Type="Int32" />
+    <Property Name="SatisFiyat" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SatisTarih" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Table_Musteri" Relationship="Self.FK_Table_Satis_Table_Musteri" FromRole="Table_Satis" ToRole="Table_Musteri" />
+    <NavigationProperty Name="Table_Urun" Relationship="Self.FK_Table_Satis_Table_Urun" FromRole="Table_Satis" ToRole="Table_Urun" />
+  </EntityType>
+  <EntityType Name="Table_Urun">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunAd" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="UrunMarkas" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="UrunStokSayisi" Type="Int16" />
+    <Property Name="UrunSatisFiyati" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UrunDurum" Type="Boolean" />
+    <Property Name="UrunKategoriId" Type="Int32" />
+    <NavigationProperty Name="Table_Kategori" Relationship="Self.FK_Table_Urun_Table_Kategori" FromRole="Table_Urun" ToRole="Table_Kategori" />
+    <NavigationProperty Name="Table_Satis" Relationship="Self.FK_Table_Satis_Table_Urun" FromRole="Table_Urun" ToRole="Table_Satis" />
+  </EntityType>
+  <Association Name="FK_Table_Urun_Table_Kategori">
+    <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+    <End Role="Table_Urun" Type="Self.Table_Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table_Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="Table_Urun">
+        <PropertyRef Name="UrunKategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_Satis_Table_Musteri">
+    <End Role="Table_Musteri" Type="Self.Table_Musteri" Multiplicity="0..1" />
+    <End Role="Table_Satis" Type="Self.Table_Satis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table_Musteri">
+        <PropertyRef Name="MusteriId" />
+      </Principal>
+      <Dependent Role="Table_Satis">
+        <PropertyRef Name="SatisMusteri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_Satis_Table_Urun">
+    <End Role="Table_Urun" Type="Self.Table_Urun" Multiplicity="0..1" />
+    <End Role="Table_Satis" Type="Self.Table_Satis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table_Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="Table_Satis">
+        <PropertyRef Name="SatisUrun" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EntityUrunEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Table_Kategori" EntityType="Self.Table_Kategori" />
+    <EntitySet Name="Table_Musteri" EntityType="Self.Table_Musteri" />
+    <EntitySet Name="Table_Satis" EntityType="Self.Table_Satis" />
+    <EntitySet Name="Table_Urun" EntityType="Self.Table_Urun" />
+    <AssociationSet Name="FK_Table_Urun_Table_Kategori" Association="Self.FK_Table_Urun_Table_Kategori">
+      <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+      <End Role="Table_Urun" EntitySet="Table_Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_Satis_Table_Musteri" Association="Self.FK_Table_Satis_Table_Musteri">
+      <End Role="Table_Musteri" EntitySet="Table_Musteri" />
+      <End Role="Table_Satis" EntitySet="Table_Satis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_Satis_Table_Urun" Association="Self.FK_Table_Satis_Table_Urun">
+      <End Role="Table_Urun" EntitySet="Table_Urun" />
+      <End Role="Table_Satis" EntitySet="Table_Satis" />
+    </AssociationSet>
+    <FunctionImport Name="MarkaGetir" ReturnType="Collection(String)" />
+    <EntitySet Name="Table_Admin" EntityType="EntityUrunModel.Table_Admin" />
+  </EntityContainer>
+  <EntityType Name="Table_Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminKullaniciAd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AdminSifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>
